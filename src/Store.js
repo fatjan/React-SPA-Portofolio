@@ -45,9 +45,9 @@ const initialState = {
 
 
 }
-
-const basicUrl = "http://0.0.0.0:8010/proxy"
-// const basicUrl = "https://cors-anywhere.herokuapp.com/http://13.210.147.51"
+// const basicUrl = "http://13.210.147.51"
+// const basicUrl = "http://0.0.0.0:8010/proxy"
+const basicUrl = "https://cors-anywhere.herokuapp.com/http://13.210.147.51"
 // const basicUrl = "http://localhost:5001"
 // const urlLokal = "https://cors-anywhere.herokuapp.com/http://13.210.147.51/product?p=1&rp=50"
 // const urlLokal = "http://localhost:5001/product?p=1&rp=50"
@@ -233,9 +233,6 @@ export const actions = store => ({
                         kota: response.data.data.kota,
                     });
                     } 
-                    // else {
-                    //     alert ("Username has been used. Try choosing another user name.")
-                    // }
                 })
             .catch(error => {
                 console.log("error");
@@ -243,12 +240,7 @@ export const actions = store => ({
     }, 
 
     getProducts: async state => {
-        const data = {
-            listProducts: state.listProducts
-        }
         await axios
-            // .get(basicUrl+"/product?p=1&rp=50", 
-            //     {headers: {"X-Requested-With": "http://13.210.147.51"}})
             .get(basicUrl+"/product?p=1&rp=50")
             .then  ( response => {
                 store.setState({
@@ -363,6 +355,7 @@ export const actions = store => ({
         // const data = {
         //     listProducts: state.listProducts
         // }
+        console.log("----------------- Memulai proses get -----------------")
         const token = store.getState
         await axios
             .get(basicUrl+"/pop_product?p=1&rp=50")
@@ -370,12 +363,13 @@ export const actions = store => ({
                 store.setState({
                     listPopProducts: response.data.pop_products
                     });
-                    console.log("produk ini",this.listPopProducts)
+                    console.log("produk ini", response.data)
                 })
             // .get()
             .catch(error => {
                 console.log("error");
             })
+            console.log("----------------- Memulai proses get -----------------")
         },
     
     editProduct: async (state, body) => {
@@ -501,7 +495,7 @@ export const actions = store => ({
                     totalHarga: response.data.data.total_harga,
                     productDetail: response.data.data.detail
                     });
-                    console.log("produk ini berhasil dimasukkan cart",state.idProduct)
+                    alert("produk ini berhasil dimasukkan cart",state.idProduct)
                 })
             .catch(error => {
                 console.log("error");
@@ -572,7 +566,7 @@ export const actions = store => ({
             store.setState({
                 listCarts: response.data.data
                 });
-                console.log("ini carts nya", state.listCarts)
+                console.log("ini carts nya di fungsi getCarts", state.listCarts)
             })
         .catch(error => {
             console.log("error");
@@ -582,7 +576,7 @@ export const actions = store => ({
     getTransactions: async state => {
         console.log("ini di getCarts function")
     await axios
-        .get(basicUrl+"/cart?p=1&rp=50", {headers: {'Authorization': "Bearer " + store.getState().token}})
+        .get(basicUrl+"/cart?p=1&rp=50", {headers: {'Authorization': "Bearer " + state.token}})
         .then  ( response => {
             store.setState({
                 listCarts: response.data.data

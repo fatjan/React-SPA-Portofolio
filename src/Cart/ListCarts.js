@@ -50,5 +50,3 @@ export default connect (
     actions
 ) (withRouter (ListCarts));
 
-// onClick={() => this.handleClickEdit()}
-// onClick={ e => this.props.deleteProduct(props.id)}

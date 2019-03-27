@@ -13,6 +13,8 @@ class BestSellers extends Component {
 
     };
     render() {
+        console.log("List pop produk dari bestseller", this.props.listPopProducts)
+        console.log("List produk dari bestseller", this.props.listProducts)
       return (
         <div class="best_sellers">
         <div class="container">
@@ -26,16 +28,16 @@ class BestSellers extends Component {
             <br />
             <div class="row">
 
-                            {this.props.listPopProducts.map((item, key) => {
+                {this.props.listPopProducts.map((item, key) => {
 
-                                    return <ListPopProducts key={key} name={item.name} 
-                                    type={item.type} kategori={item.kategori} 
-                                    harga={item.harga} 
-                                    penjual={item.penjual} img={item.urlimage}
-                                    />;
-                                    }
-                                    )
-                                }
+                        return <ListPopProducts key={key} name={item.name} 
+                        type={item.type} kategori={item.kategori} 
+                        harga={item.harga} 
+                        penjual={item.penjual} img={item.urlimage}
+                        />;
+                        }
+                        )
+                    }
                         
 
                     </div>

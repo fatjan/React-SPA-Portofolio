@@ -20,6 +20,7 @@ class CartContent extends Component {
      
     componentDidMount = async () => {
         this.props.getCarts().then()
+        console.log("carts di compDidMount CartContent", this.props.listCarts)
         }
 
     render() {
